@@ -1,0 +1,10 @@
+#!/bin/bash
+
+user=$1
+
+
+user_wm_pid=`pgrep -u $user xfwm`
+XDG_SEAT_PATH=`cat /proc/${user_wm_pid}/environ | tr '\0' '\n' |grep XDG_SEAT_PATH | cut -d= -f2`
+
+usermod --lock $user
+
